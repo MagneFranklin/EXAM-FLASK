@@ -1,0 +1,22 @@
+<!-- templates/edit_form.html -->
+{% extends 'base.html' %}
+
+{% block title %}Editar Tarea{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4">✏️ Editar Tarea</h2>
+  <form method="post">
+    <div class="mb-3">
+      <label for="title" class="form-label">Título</label>
+      <input type="text" class="form-control" name="title" value="{{ task['title'] }}" required>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Descripción</label>
+      <textarea class="form-control" name="description" rows="3">{{ task['description'] }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

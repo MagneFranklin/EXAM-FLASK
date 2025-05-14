@@ -1,0 +1,38 @@
+# Entorno virtual
+venv/
+env/
+.venv/
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos de desarrollo
+.idea/
+.vscode/
+
+# Distribuciones y paquetes
+dist/
+build/
+*.egg-info/
+
+# Archivos de cobertura
+.coverage*
+htmlcov/
+
+# Archivos de configuración de pruebas
+.tox/
+.nox/
+.coverage
+.hypothesis/
+
+# Documentación
+docs/_build/
+
+# Archivos temporales
+*.log
+*.pot
+*.pyc
+*.pyo
+*~

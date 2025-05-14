@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Panel{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-lg-3">
+    <div class="bg-white p-3 border rounded shadow-sm mb-4">
+      <h4 class="text-secondary">Usuario</h4>
+      <p class="mb-1"><strong>{{ username }}</strong></p>
+      <a href="{{ url_for('logout') }}" class="btn btn-sm btn-outline-secondary mt-2">Cerrar sesión</a>
+    </div>
+    <div class="bg-white p-3 border rounded shadow-sm">
+      <a href="{{ url_for('new_task') }}" class="btn btn-primary w-100">Nueva Tarea</a>
+    </div>
+  </div>
+
+  <div class="col-lg-9">
+    <h3 class="mb-4">Lista de Tareas</h3>
+    {% if tasks %}
+      <div class="row">
+        {% for task in tasks %}
+          <div class="col-md-6 mb-4">
+            <div class="p-3 border bg-white rounded shadow-sm">
+              <h5 class="{% if task['completed'] %}text-muted text-decoration-line-through{% endif %}">
+                {{ task['title'] }}
+              </h5>
+              <p>{{ task['description'] }}</p>
+              <div class="d-flex justify-content-end gap-2">
+                {% if not task['completed'] %}
+                  <a href="{{ url_for('complete_task', task_id=task['id']) }}" class="btn btn-sm btn-outline-success">Completar</a>
+                {% endif %}
+                <a href="{{ url_for('edit_task', task_id=task['id']) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                <a href="{{ url_for('delete_task', task_id=task['id']) }}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-muted">No tienes tareas aún.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

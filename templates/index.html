@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6">
+    <div class="mb-4">
+      <h2 class="fw-bold">Bienvenido a tu Gestor de Tareas</h2>
+      <p class="text-muted">
+        Administra tu productividad de forma sencilla. Accede, crea y gestiona tareas personales o públicas en un entorno limpio y funcional.
+      </p>
+      <div class="d-flex gap-3 mt-4">
+        <a href="{{ url_for('register') }}" class="btn btn-outline-primary">Registrarse</a>
+        <a href="{{ url_for('login') }}" class="btn btn-outline-success">Iniciar Sesión</a>
+      </div>
+    </div>
+
+    <hr class="my-5">
+
+    <div>
+      <h4 class="mb-3">Tareas Públicas</h4>
+      {% if tasks %}
+        <div class="list-group">
+          {% for task in tasks %}
+            <div class="list-group-item bg-white border">
+              <h6 class="mb-1">{{ task.title }}</h6>
+              <p class="mb-1 text-muted">{{ task.description }}</p>
+              <small class="text-{{ 'success' if task.completed else 'secondary' }}">
+                {{ 'Completada' if task.completed else 'Pendiente' }}
+              </small>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-muted">Aún no hay tareas públicas.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
